@@ -23,7 +23,8 @@ class Home extends PluginBase implements Listener {
       $o = count(Server::getInstance()->getOnlinePlayers());
       $f = $this->getServer()->getMaxPlayers(); 
       $TPS = $this->getServer()->getTicksPerSecond();
-    $p->sendTip("\n\n\n§3Баланс:§6 $m §3Онлаин:§2 $o §0/§4 $f §3TPS:§d $TPS");
+     $p->sendTip("\n\n\n§3Баланс:§6 $m §3Онлаин:§2 $o §0/§4 $f §3TPS:§d $TPS");
+    }
   }
 
   public function onDisable(){
