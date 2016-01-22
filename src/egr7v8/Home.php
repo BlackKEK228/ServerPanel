@@ -4,16 +4,16 @@ namespace egr7v8;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
+use pocketmine\scheduler\CallbackTask;
+use pocketmine\Server;
 
 class Home extends PluginBase implements Listener {
 
-  const prefix = "§3• §c";
-
   public function onEnable(){
     $this->getServer()->getPluginManager()->registerEvents($this, $this); 
+    $this->getServer()->getScheduler()->scheduleRepeatingTask(new CallbackTask([$this, "scoreboard"]), 5);
     $this->EconomyS = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
-    $this->getServer()->getScheduler()->scheduleRepeatingTask(new CallbackTask(array($this,"panel")),5);
-    $this->getLogger()->info(Home::prefix."Плагин активирован");
+    $this->getLogger()->info("§l§2plugin enabled!");
   }
 
   public function scoreboard(){
@@ -23,11 +23,11 @@ class Home extends PluginBase implements Listener {
       $o = count(Server::getInstance()->getOnlinePlayers());
       $f = $this->getServer()->getMaxPlayers(); 
       $TPS = $this->getServer()->getTicksPerSecond();
-     $p->sendTip("\n\n\n§3Баланс:§6 $m §3Онлаин:§2 $o §0/§4 $f §3TPS:§d $TPS");
+      $p->sendTip("\n\n§l§1Money: $m §l§6Online: $o/$f §l§2TPS: $TPS");
     }
   }
 
   public function onDisable(){
-    $this->getLogger()->info(Home::prefix."Плагин деактивирован");
+    $this->getLogger()->info("§l§7plugin disabled!");
   }
 }
