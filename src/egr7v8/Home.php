@@ -7,13 +7,13 @@ use pocketmine\event\Listener;
 
 class Home extends PluginBase implements Listener {
 
-  const prefix = "§3• §c";
+  const prefix = "§3• §c"; //msg prefix
 
   public function onEnable(){
     $this->getServer()->getPluginManager()->registerEvents($this, $this); 
     $this->EconomyS = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
     $this->getServer()->getScheduler()->scheduleRepeatingTask(new CallbackTask(array($this,"panel")),5);
-    $this->getLogger()->info(Home::prefix."Плагин активирован");
+    $this->getLogger()->info(Home::prefix."plugin enabled");
   }
 
   public function scoreboard(){
@@ -23,10 +23,10 @@ class Home extends PluginBase implements Listener {
       $o = count(Server::getInstance()->getOnlinePlayers());
       $f = $this->getServer()->getMaxPlayers(); 
       $TPS = $this->getServer()->getTicksPerSecond();
-    $p->sendTip("\n\n\n§3Баланс:§6 $m §3Онлаин:§2 $o §0/§4 $f §3TPS:§d $TPS");
+    $p->sendTip("\n\n\n§3Balance:§6 $m §3Online:§2 $o §0/§4 $f §3TPS:§d $TPS");
   }
 
   public function onDisable(){
-    $this->getLogger()->info(Home::prefix."Плагин деактивирован");
+    $this->getLogger()->info(Home::prefix."plugin disabled");
   }
 }
